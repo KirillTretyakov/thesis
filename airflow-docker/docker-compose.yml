@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: airflow
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # порт наружу НЕ публикуем, Airflow достучится по имени postgres внутри сети compose
+    # ports:
+    #   - "5432:5432"
+
+  airflow:
+    build: .
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "8001:8080"
+    environment:
+      # важно: база для Airflow метаданных
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:postgres@postgres:5432/airflow
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__CORE__DAGS_FOLDER: /usr/local/airflow/dags
+      AIRFLOW__CORE__PLUGINS_FOLDER: /usr/local/airflow/plugins
+    volumes:
+      - ./airflow/dags:/usr/local/airflow/dags
+      - ./airflow/plugins:/usr/local/airflow/plugins
+      - logs:/usr/local/airflow/logs
+
+volumes:
+  pgdata:
+  logs:
