@@ -1,0 +1,26 @@
+.metrics{
+  box-sizing: border-box;
+  width: 100%;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  .score {
+    font-size: 32px;
+    line-height: 36px;
+
+    &.purple{
+      color: #8b00ff;
+    }
+
+    &.green{
+      color: #00a331;
+    }
+
+    &.blue{
+      color: #00aed1;
+    }
+  }
+}
