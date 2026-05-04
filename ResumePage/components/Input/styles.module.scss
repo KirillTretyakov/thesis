@@ -1,0 +1,19 @@
+.inputWrapper {
+  padding: 12px 8px;
+  outline: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+
+  .input {
+    border: none;
+    cursor: pointer;
+
+    &:active {
+      outline: none;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}

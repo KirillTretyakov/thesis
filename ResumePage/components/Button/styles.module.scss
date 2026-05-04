@@ -1,0 +1,18 @@
+.btn{
+  background-color: transparent;
+  border: none;
+  padding: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &:hover{
+    color: #8b00ff;
+    background-color: #e5afee;
+    border-radius: 8px;
+    outline: 1px solid transparent;
+
+    svg * {
+      fill: #8b00ff;
+    }
+  }
+}
